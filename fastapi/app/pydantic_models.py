@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 
 class WineRecord(BaseModel):
-    id: int
+    uid: int
     alcohol: float
     malic_acid: float
     ash: float
@@ -26,4 +26,3 @@ class WineRecord(BaseModel):
 class WineRecordsProcessed(BaseModel):
     processed: int
     message: Optional[str] = None
-

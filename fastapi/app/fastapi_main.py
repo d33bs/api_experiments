@@ -34,7 +34,7 @@ def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 
 
-@app.get("/sklearn_wine/", response_model=List[pydantic_models.WineRecord])
+@app.get("/sklearn_wine", response_model=List[pydantic_models.WineRecord])
 def get_sklearn_wine():
     # load wine dataset from sklearn
     wine = datasets.load_wine()
@@ -46,7 +46,7 @@ def get_sklearn_wine():
     df.columns = [col.replace("/", "_") for col in df.columns]
 
     # set id col to index number
-    df["id"] = df.index
+    df["uid"] = df.index
 
     # export data as record-orientated dict
     df_dict = df.to_dict(orient="records")
@@ -57,12 +57,12 @@ def get_sklearn_wine():
     return result
 
 
-@app.get("/sqlite_wine/", response_model=List[pydantic_models.WineRecord])
+@app.get("/sqlite_wine", response_model=List[pydantic_models.WineRecord])
 def get_wine(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     return database_ops.get_wine_records(db, skip=skip, limit=limit)
 
 
-@app.post("/sqlite_wine/", response_model=pydantic_models.WineRecordsProcessed)
+@app.post("/sqlite_wine", response_model=pydantic_models.WineRecordsProcessed)
 def post_wine(
     wine_records: List[pydantic_models.WineRecord], db: Session = Depends(get_db)
 ):

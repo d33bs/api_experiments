@@ -5,7 +5,7 @@ from database import Base
 class Wine(Base):
     __tablename__ = "wine"
 
-    id = Column(Integer, primary_key=True)  # auto-increment should be default
+    uid = Column(Integer, primary_key=True)  # auto-increment should be default
     alcohol = Column(Float, default=0.0)
     malic_acid = Column(Float, default=0.0)
     ash = Column(Float, default=0.0)
