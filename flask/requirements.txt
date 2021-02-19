@@ -1,6 +1,6 @@
 requests
-fastapi
-uvicorn[standard]
+flask
+flask-marshmallow
 psutil
 pytest
 sqlalchemy
