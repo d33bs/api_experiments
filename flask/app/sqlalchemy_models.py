@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, Float
 import flask_sqlalchemy
+from sqlalchemy import Column, Float, Integer
+
 from database import db
 
 

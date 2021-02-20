@@ -1,28 +1,19 @@
 from typing import List, Optional
 
-from marshmallow_sqlalchemy import ModelSchema
+import marshmallow as ma
+from marshmallow_sqlalchemy import ModelSchema, SQLAlchemyAutoSchema
+
+from sqlalchemy_models import Wine
 
 
-class Wine(ModelSchema):
+class Wine(SQLAlchemyAutoSchema):
     class Meta:
-        fields = (
-            "uid",
-            "alcohol",
-            "malic_acid",
-            "ash",
-            "alcalinity_of_ash",
-            "magnesium",
-            "total_phenols",
-            "flavanoids",
-            "nonflavanoid_phenols",
-            "proanthocyanins",
-            "color_intensity",
-            "hue",
-            "od280_od315_of_diluted_wines",
-            "proline",
-        )
+        model = Wine
 
 
-class WineRecordsProcessed(ModelSchema):
+class WineRecordsProcessed(ma.Schema):
     class Meta:
         fields = ("processed", "message")
+
+    processed = ma.fields.Int()
+    message = ma.fields.Str()
